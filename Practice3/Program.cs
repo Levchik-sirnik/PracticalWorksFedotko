@@ -1,4 +1,5 @@
-﻿using System.Formats.Asn1;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Formats.Asn1;
 
 namespace Practice3
 {
@@ -6,22 +7,57 @@ namespace Practice3
     {
         static void Main(string[] args)
         {
-            // task 1
-            const int secondsInDay = 86400;
-            Console.Write("Enter seconds: ");
-            uint totalSeconds = Convert.ToUInt32(Console.ReadLine());
-            uint hours = totalSeconds / 3600;
-            uint minutes  = (totalSeconds % 60) / 60;
-            uint seconds = totalSeconds % 60;
-            Console.WriteLine($"Current time: {hours:D2}:{minutes:D2}:{seconds:D2}");
+            Random rnd = new Random();
+            int[] arr = new int[20];
+            for (int i = 0; i < arr.Length; i++)
+            {
+                arr[i] = rnd.Next(1, 11);
+                Console.WriteLine("оценка " + (i + 1) + "студента " + arr[i]);
+            }
+            int a = 0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                a = a + arr[i];
+            }
+            Console.WriteLine("средняя оценка студентов : " + (a / 20.0));
+            int b = 0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (arr[i] == 5)
+                {
+                    b++;
+                }
+            }
+            Console.WriteLine("Количество студентов, получивших оценку 5 : " + b);
+            int c = 0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (arr[i] == 2)
+                {
+                    c++;
+                }
 
-            uint remainingSeconds = secondsInDay - totalSeconds;
-            uint remHours = remainingSeconds / 3600;
-            uint remMinutes = (remainingSeconds % 60) / 60; 
-            uint remSecs = remainingSeconds % 60;
-            Console.WriteLine($"Until midnight: {remHours:D2}:{remMinutes:D2}:{remSecs:D2}");
+            }
+            Console.WriteLine("количество студентов, получивших оценку 2 : " + c);
+            int d = arr[0];
+            int e = 0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (arr[i] > d)
+                {
+                    d = arr[i];
+                    e = i;
+                }
+            }
+            Console.WriteLine("номер студента, получившего самую высокую оценку : " + (e + 1));
 
-            
+
+
         }
+
+
     }
+
 }
+
+
