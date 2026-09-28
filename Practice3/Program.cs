@@ -7,51 +7,33 @@ namespace Practice3
     {
         static void Main(string[] args)
         {
-            Random rnd = new Random();
-            int[] arr = new int[20];
-            for (int i = 0; i < arr.Length; i++)
-            {
-                arr[i] = rnd.Next(1, 11);
-                Console.WriteLine("оценка " + (i + 1) + "студента " + arr[i]);
-            }
-            int a = 0;
-            for (int i = 0; i < arr.Length; i++)
-            {
-                a = a + arr[i];
-            }
-            Console.WriteLine("средняя оценка студентов : " + (a / 20.0));
-            int b = 0;
-            for (int i = 0; i < arr.Length; i++)
-            {
-                if (arr[i] == 5)
-                {
-                    b++;
-                }
-            }
-            Console.WriteLine("Количество студентов, получивших оценку 5 : " + b);
-            int c = 0;
-            for (int i = 0; i < arr.Length; i++)
-            {
-                if (arr[i] == 2)
-                {
-                    c++;
-                }
+            // task 1
+            int secondsInDay = 86400;
+            Console.Write("Enter seconds: ");
+            int totalSeconds = Convert.ToInt32(Console.ReadLine());
 
-            }
-            Console.WriteLine("количество студентов, получивших оценку 2 : " + c);
-            int d = arr[0];
-            int e = 0;
-            for (int i = 0; i < arr.Length; i++)
-            {
-                if (arr[i] > d)
-                {
-                    d = arr[i];
-                    e = i;
-                }
-            }
-            Console.WriteLine("номер студента, получившего самую высокую оценку : " + (e + 1));
+            int currentHours = totalSeconds / 3600;
+            int currentMinutes = (totalSeconds % 3600) / 60;
+            int currentSeconds = totalSeconds % 60;
+            Console.WriteLine($"Current time: {currentHours:D2}:{currentMinutes:D2}:{currentSeconds:D2}");
+
+            int leftTotalSeconds = secondsInDay - totalSeconds;
+            int leftHours = leftTotalSeconds / 3600;
+            int leftMinutes = (leftTotalSeconds % 3600) / 60;
+            int leftSeconds = leftTotalSeconds % 60;
+            Console.WriteLine($"Current time: {leftHours:D2}:{leftMinutes:D2}:{leftSeconds:D2}");
 
 
+            // task 2
+            Console.Write("Enetr diametr: ");
+            double diametr = Convert.ToDouble(Console.ReadLine());
+
+            double radius = diametr * 0.5;
+            double P = Math.PI * diametr;
+            double S = Math.PI * radius * radius;
+
+            Console.WriteLine($"P: {P}");
+            Console.WriteLine($"S: {S}");
 
         }
 
