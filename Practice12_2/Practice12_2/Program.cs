@@ -8,15 +8,17 @@ namespace Practice12_2
         {
             // task 1
             Console.WriteLine(Power(6, 3));
+            Console.WriteLine();
 
 
             // task 2
             PrintStars(6);
-            Console.WriteLine();
+            Console.WriteLine("\n");
 
 
             // task 3
             Console.WriteLine(RangeSum(1, 7));
+            Console.WriteLine();
 
 
             // task 4
@@ -26,19 +28,16 @@ namespace Practice12_2
             Console.WriteLine("Исходный массив (первые 20 элементов для примера):");
             for (int i = 0; i < numbers.Length; i++)
             {
-                numbers[i] = rand.Next(-50, 51); // числа от -50 до 50
+                numbers[i] = rand.Next(-50, 51); 
                 if (i < 20)
                 {
                     Console.Write(numbers[i] + " ");
                 }
             }
-            Console.WriteLine("... и так далее до 100.\n");
+            Console.WriteLine("... и так далее до 100.");
 
-            // Запускаем рекурсию с начального (0) индекса
-            // В качестве начальной минимальной суммы передаем 0, а индекс -1
             int bestIndex = FindMinSum(numbers, 0, 0, -1);
 
-            // Считаем сумму найденной последовательности для вывода результата
             int finalSum = 0;
             Console.Write($"Минимальная последовательность (начиная с позиции {bestIndex}): ");
             for (int i = bestIndex; i < bestIndex + 10; i++)
@@ -47,7 +46,32 @@ namespace Practice12_2
                 finalSum += numbers[i];
             }
 
-            Console.WriteLine($"\nСумма этой последовательности: {finalSum}");
+            Console.WriteLine($"\nСумма этой последовательности: {finalSum}\n");
+
+
+            // task 5
+            int[] arr1 = { 5, -3, 12, 8, 2 };
+            Console.WriteLine($"Максимум в одномерном массиве: {Max(arr1)}");
+
+            int[,] arr2 = {
+            { 1, 4, 3 },
+            { 9, 2, 25 },
+            { 7, 0, 6 }
+            };
+            Console.WriteLine($"Максимум в двумерном массиве: {Max(arr2)}");
+
+            int[,,] arr3 = new int[2, 2, 2] {
+            { { 1, 2 }, { 3, 4 } },
+            { { 5, 8 }, { 42, 7 } }
+            };
+            Console.WriteLine($"Максимум в трехмерном массиве: {Max(arr3)}");
+
+            int num1 = 15, num2 = 34;
+            Console.WriteLine($"Максимум из двух чисел ({num1}, {num2}): {Max(num1, num2)}");
+
+            int n1 = 50, n2 = 105, n3 = 73;
+            Console.WriteLine($"Максимум из трёх чисел ({n1}, {n2}, {n3}): {Max(n1, n2, n3)}");
+
         }
 
         static double Power(double number, int exp)
@@ -92,6 +116,47 @@ namespace Practice12_2
             }
 
             return FindMinSum(arr, index + 1, minSum, minIndex);
+        }
+
+
+        static int Max(int[] arr)
+        {
+            int max = arr[0];
+            foreach (int el in arr)
+            {
+                if (el > max) max = el;
+            }
+            return max;
+        }
+
+        static int Max(int[,] arr)
+        {
+            int max = arr[0, 0];
+            foreach (int el in arr)
+            {
+                if (el > max) max = el;
+            }
+            return max;
+        }
+
+        static int Max(int[,,] arr)
+        {
+            int max = arr[0, 0, 0];
+            foreach (int el in arr)
+            {
+                if (el > max) max = el;
+            }
+            return max;
+        }
+
+        static int Max(int a, int b)
+        {
+            return a > b ? a : b;
+        }
+
+        static int Max(int a, int b, int c)
+        {
+            return Max(Max(a, b), c);
         }
     }
 }
